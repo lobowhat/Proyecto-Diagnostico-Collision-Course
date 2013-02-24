@@ -10,7 +10,8 @@
 
 //Clase Abstracta de Lista
 
-template<typename E> class ListADT {
+template<typename E>
+class ListADT {
 private:
 	void operator =(const ListADT&) {
 	}

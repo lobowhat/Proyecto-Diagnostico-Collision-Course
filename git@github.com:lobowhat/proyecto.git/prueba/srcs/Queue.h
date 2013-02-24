@@ -9,7 +9,8 @@
 #define QUEUE_H_
 
 // Abstract queue class
-template<typename E> class Queue {
+template<typename E>
+class Queue {
 private:
 	void operator =(const Queue&) {
 	}// Protect assignment
