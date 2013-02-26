@@ -11,20 +11,19 @@
 #include "SimpleNode.h"
 #include <iostream>
 
-template<typename E>
-class ListQueue:public Queue<E> {
+class ListQueue:public Queue {
 private:
-	SimpleNode<E>* _top; // Pointer to front queue node
+	SimpleNode * _top; // Pointer to front queue node
 
-	SimpleNode<E>* _tail; // Pointer to rear queue node
+	SimpleNode * _tail; // Pointer to rear queue node
 
 	int _size; // Number of elements in queue
 public:
 	ListQueue();
 	virtual ~ListQueue();
 	void clear();
-	void enqueue(const E& pData);
-	E dequeue();
+	void enqueue(const int& pData);
+	int dequeue();
 	int length() const;
 };
 

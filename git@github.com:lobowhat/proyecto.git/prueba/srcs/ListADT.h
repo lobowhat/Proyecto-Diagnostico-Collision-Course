@@ -10,7 +10,6 @@
 
 //Clase Abstracta de Lista
 
-template<typename E>
 class ListADT {
 private:
 	void operator =(const ListADT&) {
@@ -26,15 +25,15 @@ public:
 
 	// Inserta un elemento.
 	// item: Elemento a insertar.
-	virtual void insert(const E& item) = 0;
+	virtual void insert(const int& item) = 0;
 
 	// Inserta un dato en orden.
 	// item: Elemento a insertar.
-	virtual void insertInOrder(const E& item) = 0;
+	virtual void insertInOrder(const int& item) = 0;
 
 	// Elimina y devuelve el valor.
 	// Retorna: el elemento que fue borrado.
-	virtual E deleteNode(const E& pData) = 0;
+	virtual int deleteNode(const int& pData) = 0;
 
 	// Retorna: Tamaño de la lista.
 	virtual int length() const = 0;

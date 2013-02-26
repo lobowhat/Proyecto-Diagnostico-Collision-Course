@@ -9,23 +9,23 @@
 #define DNODE_H_
 #include <iostream>
 
-template<typename E> class DoubleNode {
+class DoubleNode {
 private:
-	E _data;
+	int _data;
 	// Valor del nodo
 	DoubleNode *_next;
 	// Puntero al nodo anterior
 	DoubleNode *_previous;
 	//Puntero al nodo anterior
 public:
-	DoubleNode(const E& pData, DoubleNode* pNextNode = NULL, DoubleNode* pPreviosNode = NULL);
+	DoubleNode(const int& pData, DoubleNode* pNextNode = NULL, DoubleNode* pPreviosNode = NULL);
 	DoubleNode(DoubleNode* pNextNode = NULL, DoubleNode* pPreviousNode = NULL);
 	virtual ~DoubleNode();
-	DoubleNode<E> * getNext();
-	DoubleNode<E> * getPrevious();
+	DoubleNode * getNext();
+	DoubleNode * getPrevious();
 	void setNext(DoubleNode* pNode);
 	void setPrevious(DoubleNode* pNode);
-	E getData();
+	int getData();
 };
 
 #endif /* DNODE_H_ */

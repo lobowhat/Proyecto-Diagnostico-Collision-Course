@@ -7,18 +7,17 @@
 
 #include "ListQueue.h"
 
-template<typename E>
-ListQueue<E>::ListQueue() {
-	this->_top = this->_tail = new SimpleNode<E>();
+ListQueue::ListQueue() {
+	this->_top = this->_tail = NULL;
 	this->_size = 0;
 }
-template<typename E>
-ListQueue<E>::~ListQueue() {
+
+ListQueue::~ListQueue() {
 	clear();
 	delete this->_top;
 }
-template<typename E>
-void ListQueue<E>::clear() { // Clear queue
+
+void ListQueue::clear() { // Limpia la cola
 	while (this->_top->getNext() != NULL) { // Elimina todos los nodos.
 		this->_tail = this->_top;
 		delete this->_tail;
@@ -27,29 +26,35 @@ void ListQueue<E>::clear() { // Clear queue
 	this->_size = 0;
 }
 
-template<typename E>
-void ListQueue<E>::enqueue(const E& pData) {
-	this->_tail->setNext(new SimpleNode<E>(pData, NULL));
-	this->_tail = this->_tail->getNext();
-	this->_size++;
+void ListQueue::enqueue(const int& pData) {
+	SimpleNode * nNode = new SimpleNode(pData, NULL);
+	if (this->_top == NULL) {
+		this->_top = this->_tail = nNode;
+		this->_size++;
+	} else {
+		_tail->setNext(nNode);
+		_tail = nNode;
+		this->_size++;
+	}
 }
 
-template<typename E>
-E ListQueue<E>::dequeue() {
+int ListQueue::dequeue() {
 	if (this->_size == 0) {
 		std::cout << "Queue is empty" << std::endl;
+		return 0;
 	}
-	E data = this->_top->getNext()->getData();
-	SimpleNode<E> *ltemp = this->_top->getNext();
-	this->_top->setNext(ltemp->getNext()); // Avanza al top
-	if (this->_tail == ltemp)
+	int data = this->_top->getData();
+	SimpleNode * tmp = this->_top->getNext();
+	this->_top = this->_top->getNext();
+	if (this->_top == NULL){
 		this->_tail = this->_top; // Desencola
-	delete ltemp; // Nodo eliminado
+	}
+	delete tmp; // Nodo eliminado
 	this->_size--;
 	return data; // Retorno del valor;
 }
 
-template<typename E>
-int ListQueue<E>::length() const {
-	return this->_size;
+int ListQueue::length() const {
+return this->_size;
 }
+

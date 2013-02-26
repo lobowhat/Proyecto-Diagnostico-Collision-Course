@@ -7,20 +7,20 @@
 
 #include "DoubleCircularList.h"
 
-template<typename E>
-DoubleCircularList<E>::DoubleCircularList() {
+
+DoubleCircularList::DoubleCircularList() {
 	this->_head = this->_tail = NULL;
 	this->_size = 0;
 }
 
-template<typename E>
-DoubleCircularList<E>::~DoubleCircularList() {
+
+DoubleCircularList::~DoubleCircularList() {
 }
 
-template<typename E>
-void DoubleCircularList<E>::insert(const E& pData) {
-	DoubleNode<E>* nNode;
-	nNode = new DoubleNode<E>(pData, NULL, NULL);
+
+void DoubleCircularList::insert(const int& pData) {
+	DoubleNode* nNode;
+	nNode = new DoubleNode(pData, NULL, NULL);
 	if (this->_head == NULL) {
 		nNode->setNext(nNode);
 		nNode->setPrevious(nNode);
@@ -36,16 +36,16 @@ void DoubleCircularList<E>::insert(const E& pData) {
 	}
 }
 
-template<typename E>
-void DoubleCircularList<E>::insertInOrder(const E& pData) {
-	DoubleNode<E>* nNode = new DoubleNode<E>(pData);
+
+void DoubleCircularList::insertInOrder(const int& pData) {
+	DoubleNode* nNode = new DoubleNode(pData);
 	if (this->_head == NULL) {
 		this->_head = nNode;
 		nNode->setPrevious(nNode);
 		nNode->setNext(nNode);
 		this->_size++;
 	} else {
-		DoubleNode<E>* tmp = this->_head;
+		DoubleNode* tmp = this->_head;
 		while (tmp->getData() < pData && tmp->getNext() != this->_head) {
 			tmp = tmp->getNext();
 		}
@@ -68,21 +68,21 @@ void DoubleCircularList<E>::insertInOrder(const E& pData) {
 	}
 }
 
-template<typename E>
-E DoubleCircularList<E>::deleteNode(const E& pData) {
+
+int DoubleCircularList::deleteNode(const int& pData) {
 	if (this->_head == NULL) {
 		std::cout << "La lista está vacía" << std::endl;
 		return 0;
 	} else if (this->_head->getNext() == this->_head) {
-		E tmpData = this->_head->getData();
-		DoubleNode<E>* tmp = this->_head;
+		int tmpData = this->_head->getData();
+		DoubleNode* tmp = this->_head;
 		this->_head = NULL;
 		delete (tmp);
 		this->_size--;
 		return tmpData;
 	} else if (this->_head->getData() == pData) {
-		E tmpData = this->_head->getData();
-		DoubleNode<E>* tmp = this->_head;
+		int tmpData = this->_head->getData();
+		DoubleNode* tmp = this->_head;
 		this->_head->getNext()->setPrevious(this->_head->getPrevious());
 		this->_head->getPrevious()->setNext(this->_head->getNext());
 		this->_head = this->_head->getNext();
@@ -91,12 +91,12 @@ E DoubleCircularList<E>::deleteNode(const E& pData) {
 		return tmpData;
 
 	} else {
-		DoubleNode<E>* tmp = this->_head;
+		DoubleNode* tmp = this->_head;
 		while (tmp->getNext() != this->_head && tmp->getData() != pData) {
 			tmp = tmp->getNext();
 		}
 		if (tmp->getData() == pData) {
-			E tmpData = tmp->getData();
+			int tmpData = tmp->getData();
 			tmp->getPrevious()->setNext(tmp->getNext());
 			tmp->getNext()->setPrevious(tmp->getPrevious());
 			delete (tmp);
@@ -108,7 +108,7 @@ E DoubleCircularList<E>::deleteNode(const E& pData) {
 	}
 }
 
-template<typename E>
-int DoubleCircularList<E>::length() const {
+
+int DoubleCircularList::length() const {
 	return this->_size;
 }

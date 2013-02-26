@@ -7,45 +7,40 @@
 
 #include "DoubleNode.h"
 
-template<typename E>
-DoubleNode<E>::DoubleNode(const E& pData, DoubleNode* pNextNode, DoubleNode* pPreviosNode) {
+
+DoubleNode::DoubleNode(const int& pData, DoubleNode* pNextNode, DoubleNode* pPreviosNode) {
 	this->_data = pData;
 	this->_next = pNextNode;
 	this->_previous = pPreviosNode;
 }
 
-template<typename E>
-DoubleNode<E>::DoubleNode(DoubleNode* pNextNode, DoubleNode* pPreviousNode) {
+DoubleNode::DoubleNode(DoubleNode* pNextNode, DoubleNode* pPreviousNode) {
+	this->_data = 0;
 	this->_next = pNextNode;
 	this->_previous = pPreviousNode;
 }
 
-template<typename E>
-DoubleNode<E>::~DoubleNode() {
+DoubleNode::~DoubleNode() {
 }
 
-template<typename E>
-DoubleNode<E> * DoubleNode<E>::getNext() {
+DoubleNode * DoubleNode::getNext() {
 	return this->_next;
 }
 
-template<typename E>
-DoubleNode<E> * DoubleNode<E>::getPrevious() {
+DoubleNode * DoubleNode::getPrevious() {
 	return this->_previous;
 }
 
-template<typename E>
-void DoubleNode<E>::setNext(DoubleNode* pNode) {
+void DoubleNode::setNext(DoubleNode* pNode) {
 	this->_next = pNode;
 }
 
-template<typename E>
-void DoubleNode<E>::setPrevious(DoubleNode* pNode) {
+void DoubleNode::setPrevious(DoubleNode* pNode) {
 	this->_previous = pNode;
 }
 
-template<typename E>
-E DoubleNode<E>::getData() {
+
+int DoubleNode::getData() {
 	return this->_data;
 }
 

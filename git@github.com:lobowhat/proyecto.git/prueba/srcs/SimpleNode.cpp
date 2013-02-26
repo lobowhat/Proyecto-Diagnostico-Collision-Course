@@ -7,32 +7,33 @@
 
 #include "SimpleNode.h"
 
-template<typename E>
-SimpleNode<E>::SimpleNode(const E& pData, SimpleNode* pNextNode = NULL) {
-	_data = pData;
-	_next = pNextNode;
+
+SimpleNode::SimpleNode(const int& pData, SimpleNode* pNextNode = NULL) {
+	this->_data = pData;
+	this->_next = pNextNode;
 }
 
-template<typename E>
-SimpleNode<E>::SimpleNode(SimpleNode* pNextNode = NULL) {
-	_next = pNextNode;
+
+SimpleNode::SimpleNode(SimpleNode* pNextNode = NULL) {
+	this->_data = 0;
+	this->_next = pNextNode;
 }
 
-template<typename E>
-SimpleNode<E>::~SimpleNode() {
+
+SimpleNode::~SimpleNode() {
 }
 
-template<typename E>
-void SimpleNode<E>::setNext(SimpleNode* pNode){
+
+void SimpleNode::setNext(SimpleNode* pNode) {
 	this->_next = pNode;
 }
 
-template<typename E>
-SimpleNode<E> * SimpleNode<E>::getNext(){
+
+SimpleNode * SimpleNode::getNext() {
 	return this->_next;
 }
 
-template<typename E>
-E SimpleNode<E>::getData(){
+
+int SimpleNode::getData() {
 	return this->_data;
 }

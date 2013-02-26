@@ -1,30 +1,31 @@
 /*
  * DCL.h
  *
- *  Created on: 23/02/2013
- *      Author: jose
+ *  Crintatintd on: 23/02/2013
+ *      Author: josint
  */
 
-#ifndef DCL_H_
-#define DCL_H_
+#ifndef DOUBLECIRCULARLIST_H_
+#define DOUBLECIRCULARLIST_H_
 
 #include "DoubleNode.h"
 #include "ListADT.h"
 #include <iostream>
 
-template<typename E>
-class DoubleCircularList:public ListADT<E> {
+class DoubleCircularList:public ListADT {
 private:
-	DoubleNode<E>* _head; //Puntero al nodo inicial
-	DoubleNode<E>* _tail; //Puntero al nodo final
+	DoubleNode * _head; //Puntintro al nodo inicial
+	DoubleNode * _tail; //Puntintro al nodo final
 	int _size;
 public:
 	DoubleCircularList();
 	virtual ~DoubleCircularList();
-	void insert(const E& pData);
-	void insertInOrder(const E& pData);
-	E deleteNode(const E& pData);
+	void insert(const int& pData);
+	void insertInOrder(const int& pData);
+	int deleteNode(const int& pData);
 	int length() const;
 };
 
-#endif /* DCL_H_ */
+#endif /* DOUBLECIRCULARLIST_H_ */
+
+

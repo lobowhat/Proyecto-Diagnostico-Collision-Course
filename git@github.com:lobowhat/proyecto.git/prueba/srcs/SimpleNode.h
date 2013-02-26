@@ -9,19 +9,19 @@
 #define SNODE_H_
 #include <iostream>
 
-template<typename E> class SimpleNode {
+class SimpleNode {
 private:
-	E _data;
+	int _data;
 	// Valor del nodo.
 	SimpleNode *_next;
 	// Puntero al nodo siguiente.
 public:
-	SimpleNode(const E& pData, SimpleNode* pNextNode);
+	SimpleNode(const int& pData, SimpleNode* pNextNode);
 	SimpleNode(SimpleNode* pNextNode);
 	virtual ~SimpleNode();
 	void setNext(SimpleNode* pNode);
-	SimpleNode<E>* getNext();
-	E getData();
+	SimpleNode * getNext();
+	int getData();
 };
 
 #endif /* SNODE_H_ */
