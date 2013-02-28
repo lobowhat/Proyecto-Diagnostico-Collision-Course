@@ -9,23 +9,70 @@
 #define DNODE_H_
 #include <iostream>
 
+template<typename E>
 class DoubleNode {
 private:
-	int _data;
+	E _data;
 	// Valor del nodo
-	DoubleNode *_next;
+	DoubleNode<E> *_next;
 	// Puntero al nodo anterior
-	DoubleNode *_previous;
+	DoubleNode<E> *_previous;
 	//Puntero al nodo anterior
 public:
-	DoubleNode(const int& pData, DoubleNode* pNextNode = NULL, DoubleNode* pPreviosNode = NULL);
+	DoubleNode(const E& pData, DoubleNode* pNextNode = NULL, DoubleNode* pPreviosNode = NULL);
 	DoubleNode(DoubleNode* pNextNode = NULL, DoubleNode* pPreviousNode = NULL);
 	virtual ~DoubleNode();
-	DoubleNode * getNext();
-	DoubleNode * getPrevious();
-	void setNext(DoubleNode* pNode);
-	void setPrevious(DoubleNode* pNode);
-	int getData();
+	DoubleNode<E> * getNext();
+	DoubleNode<E> * getPrevious();
+	void setNext(DoubleNode<E>* pNode);
+	void setPrevious(DoubleNode<E>* pNode);
+	E getData();
 };
 
 #endif /* DNODE_H_ */
+
+
+
+template<typename E>
+DoubleNode<E>::DoubleNode(const E& pData, DoubleNode* pNextNode, DoubleNode* pPreviosNode) {
+	this->_data = pData;
+	this->_next = pNextNode;
+	this->_previous = pPreviosNode;
+}
+
+template<typename E>
+DoubleNode<E>::DoubleNode(DoubleNode* pNextNode, DoubleNode* pPreviousNode) {
+	this->_data = 0;
+	this->_next = pNextNode;
+	this->_previous = pPreviousNode;
+}
+
+template<typename E>
+DoubleNode<E>::~DoubleNode() {
+}
+
+template<typename E>
+DoubleNode<E> * DoubleNode<E>::getNext() {
+	return this->_next;
+}
+
+template<typename E>
+DoubleNode<E> * DoubleNode<E>::getPrevious() {
+	return this->_previous;
+}
+
+template<typename E>
+void DoubleNode<E>::setNext(DoubleNode* pNode) {
+	this->_next = pNode;
+}
+
+template<typename E>
+void DoubleNode<E>::setPrevious(DoubleNode* pNode) {
+	this->_previous = pNode;
+}
+
+template<typename E>
+E DoubleNode<E>::getData() {
+	return this->_data;
+}
+
