@@ -27,8 +27,6 @@ int main(int argc, char **argv) {
 	cout << "El tamaño actual es: ";
 	cout << list->length() << endl;
 
-	usleep(100000);
-
 	ListQueue<char>* queue = new ListQueue<char>();
 	queue->enqueue('e');
 	queue->enqueue('r');
@@ -40,5 +38,7 @@ int main(int argc, char **argv) {
 	cout << (char)queue->dequeue() << endl;
 	cout << "El tamaño actual es: ";
 	cout << queue->length() << endl;
+
+	usleep(2000000);
 	return 0;
 }
