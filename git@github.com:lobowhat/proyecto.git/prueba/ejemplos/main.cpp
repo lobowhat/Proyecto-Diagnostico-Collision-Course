@@ -17,7 +17,8 @@ char exit, oldalchar;
 
 void moveX();
 void scoreDraw();
-void screenDraw();
+void screenDraw(int beginX, int maxX, int maxY);
+void initColor();
 
 int main(int argc, char **argv) {
 	initscr();
@@ -29,22 +30,23 @@ int main(int argc, char **argv) {
 	maxHeight -= 2;
 	maxWidth -= 10;
 	oldalchar = (char) 219;
-	start_color();
-	init_pair(1, COLOR_RED, COLOR_BLACK);
-	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+	initColor();
 	attron(COLOR_PAIR(1));
 	scoreDraw();
-	screenDraw();
+	screenDraw(10, 19, 4);
+	screenDraw(20, 29, 4);
+	screenDraw(30, 39, 4);
+	screenDraw(40, 49, 4);
+	screenDraw(50, 59, 4);
+	screenDraw(60, 69, 4);
+	screenDraw(70, 79, 4);
+	screenDraw(80, 89, 4);
+	screenDraw(90, 99, 4);
+	screenDraw(100, 109, 4);
 	attroff(COLOR_PAIR(1));
 	attron(COLOR_PAIR(2));
 	move(1, 1);
 	printw("Score: ");
-	move(2, 1);
-	printw("%d", 10);
-	move(3, 1);
-	printw("%d", maxHeight);
-	move(4, 1);
-	printw("%d", maxHeight);
 	attroff(COLOR_PAIR(2));
 	currentY = (maxHeight / 2);
 	currentX = (maxWidth / 2) + 5;
@@ -52,7 +54,7 @@ int main(int argc, char **argv) {
 	addch('X');
 	refresh();
 	while (1) {
-		if (sec == 100 || exit == 'q') {
+		if (sec == 2000 || exit == 'q') {
 			break;
 		}
 		sec++;
@@ -89,7 +91,7 @@ void moveX() {
 void scoreDraw() {
 	for (int i = 0; i < 9; i++) {
 		move(0, i);
-		addch('-');
+		addch('_');
 	}
 	for (int i = 0; i < 10; ++i) {
 		move(i, 0);
@@ -105,21 +107,32 @@ void scoreDraw() {
 	}
 }
 
-void screenDraw() {
-	for (int i = 10; i < maxWidth; i++) {
+void screenDraw(int beginX, int maxX, int maxY) {
+	for (int i = beginX; i < maxX; i++) {
 		move(0, i);
 		addch(oldalchar);
 	}
-	for (int i = 0; i < maxHeight; ++i) {
-		move(i, 10);
+	for (int i = 0; i < maxY; ++i) {
+		move(i, beginX);
 		addch(oldalchar);
 	}
-	for (int i = 10; i < maxWidth; ++i) {
-		move(maxHeight, i);
+	for (int i = beginX; i < maxX; ++i) {
+		move(maxY, i);
 		addch(oldalchar);
 	}
-	for (int i = 0; i < maxHeight + 1; ++i) {
-		move(i, maxWidth);
+	for (int i = 0; i < maxY+1; ++i) {
+		move(i, maxX);
 		addch(oldalchar);
 	}
+}
+
+void initColor() {
+	start_color();
+	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(3, COLOR_BLUE, COLOR_BLACK);
+	init_pair(4, COLOR_GREEN, COLOR_BLACK);
+	init_pair(5, COLOR_CYAN, COLOR_BLACK);
+	init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
+	init_pair(7, COLOR_WHITE, COLOR_BLACK);
 }
