@@ -7,6 +7,7 @@
 
 #include "Player.h"
 
+//Constructor de clase
 Player::Player() {
 	this->score = 0;
 	this->highSpeed = 0;
@@ -20,6 +21,7 @@ Player::Player() {
 	this->reset = false;
 }
 
+//Destructor de la clase
 Player::~Player() {
 }
 

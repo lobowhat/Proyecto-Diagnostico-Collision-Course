@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <errno.h>
 
-#include "Parser.hpp"
+#include "Parser.h"
 
 using namespace xercesc;
 using namespace std;
