@@ -11,14 +11,10 @@
 
 using namespace std;
 
-int main(int argc, char **argv) {
-//	GetConfig * parser = new GetConfig();
-//	string file = "Configure.xml";
-//	parser->readConfigFile(file);
-//	cout << parser->getInvincible();
 
+int main(int argc, char **argv) {
 	Player* player = new Player();
-	player->Invincible();
+	cout << player->getScore();
 	return 0;
 }
 

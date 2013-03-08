@@ -6,16 +6,19 @@
 CPP_SRCS += \
 ../srcs/Parser.cpp \
 ../srcs/Player.cpp \
+../srcs/Random.cpp \
 ../srcs/main.cpp 
 
 OBJS += \
 ./srcs/Parser.o \
 ./srcs/Player.o \
+./srcs/Random.o \
 ./srcs/main.o 
 
 CPP_DEPS += \
 ./srcs/Parser.d \
 ./srcs/Player.d \
+./srcs/Random.d \
 ./srcs/main.d 
 
 
@@ -23,7 +26,7 @@ CPP_DEPS += \
 srcs/%.o: ../srcs/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I/opt/include -I/usr/lib/gcc/i686-linux-gnu/4.7/include-fixed -I/usr/local/include -I/usr/include -I/usr/include/c++/4.7 -I/usr/include/c++/4.7/backward -I/usr/include/c++/4.7/i686-linux-gnu -I/usr/include/i386-linux-gnu -I/usr/lib/gcc/i686-linux-gnu/4.7/include -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	g++ -I/usr/lib/gcc/i686-linux-gnu/4.7/include-fixed -I/opt/include/ -I/usr/local/include -I/usr/include -I/usr/include/c++/4.7 -I/usr/include/c++/4.7/backward -I/usr/include/c++/4.7/i686-linux-gnu -I/usr/include/i386-linux-gnu -I/usr/lib/gcc/i686-linux-gnu/4.7/include -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

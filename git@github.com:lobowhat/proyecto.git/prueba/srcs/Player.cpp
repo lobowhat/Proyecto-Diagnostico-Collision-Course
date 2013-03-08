@@ -6,15 +6,24 @@
  */
 
 #include "Player.h"
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
+using namespace std;
+
 
 //Constructor de clase
 Player::Player() {
-	this->score = 0;
-	this->highSpeed = 0;
-	this->highTrack = 0;
-	this->highTraction = 0;
-	this->mediumTrack = 0;
-	this->invincible = 0;
+	this->parser = new GetConfig();
+	string file = "Configure.xml";
+	this->parser->readConfigFile(file);
+	this->score = atoi(parser->getScore());
+	this->highSpeed = atoi(parser->getHighSpeed());
+	this->highTrack = atoi(parser->getHighTrack());
+	this->highTraction = atoi(parser->getHighTraction());
+	this->mediumTrack = atoi(parser->getMediumTrack());
+	this->invincible = atoi(parser->getInvincible());
 	this->destroy = false;
 	this->posX = 0;
 	this->posY = 0;

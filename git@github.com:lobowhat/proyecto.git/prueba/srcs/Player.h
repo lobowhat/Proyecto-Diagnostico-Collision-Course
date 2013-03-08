@@ -8,6 +8,8 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
+#include "Parser.h"
+
 /**
  * Clase jugador
  */
@@ -23,6 +25,7 @@ private:
 	bool destroy; // Booleano si chocó para reiniciar
 	int posX, posY; // Posición x y del jugador
 	bool reset; //Verifica si chocó y tiene que reiniciar para dar 5 segundos para recuperarse.
+	GetConfig* parser;
 
 public:
 	Player(); // Constructor de la clase
