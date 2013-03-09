@@ -14,18 +14,29 @@
 #include "Player.h"
 #include "TrackPos.h"
 #include "ListQueue.h"
+#include "Matrix.h"
 
 class GUI {
 private:
 	Player* player_1;
 	Player* player_2;
-	pthread_t _clock, _movement, _trackPlayer1, _trackPayer2, _update; //Hilos de ejecución
+	Matrix* mainmatrix;
+	pthread_t _clock, _movement, _trackPlayer1, _trackPayer2, _update,_controlMatrix; //Hilos de ejecución
 	int sec; // Segundos de ejecución
 	int maxHeight, maxWidth; // Tamaños maximos de la ventana
 	int currentX_P1, currentY_P1, currentX_P2, currentY_P2; // Variables enteras que representan posiciones.
 	char wallChar, direction_P1, direction_P2, charPlayer_1, charPlayer_2; // Variables que almacenan los caracteres que representan a los distintos objetos.
 	char _surprises, _surprise_2; // Los caracteres que representan las sorpresas
 	char _highZones, _bump; // Caracteres que representan las zonas altas y baches.
+	int _player1;
+	int _player2;
+	int _EM;
+	int _EA;
+	int _TA;
+	int _VA;
+	int _BA;
+	int _TERR;
+	int _INVE;
 
 public:
 	GUI(); // Constructor
@@ -33,9 +44,11 @@ public:
 	static void* movement(void* obj); // Funcion ejecutora del hilo de movimiento
 	static void* crono(void* obj); // Funcion ejecutora del hilo del cronometro
 	static void* updateScores(void*);
+	static void* Controlall(void*);
 	void updateHabilities();
 	void moveAndActiveKeyPad(); // Funcion del movimiento
-	void functionCronometer(); //Funcion del cronometro
+	void functionCronometer();//Funcion del cronometro
+	void funtionMatrix();
 	bool collision(); //Verificador de colisiones con paredes
 	void boxDraw(int beginX, int beginY, int maxX, int maxY, char pChar); //Dibuja un borde con un caracter determinado
 	void initColor(); //Inicializa los colores a usarse

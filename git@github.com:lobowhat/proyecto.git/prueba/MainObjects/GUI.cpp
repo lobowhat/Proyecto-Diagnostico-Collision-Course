@@ -25,6 +25,17 @@ GUI::GUI() {
 	_surprises = '@';
 	_surprise_2 = '$';
 	_highZones = 'M';
+	this->mainmatrix = new Matrix();
+	this->mainmatrix->creationmatrix();
+	this->_player1=1;
+	this->_player2=2;
+	this->_EM=3;
+	this->_EA=4;
+	this->_TA=5;
+	this->_VA=6;
+	this->_BA=7;
+	this->_TERR=8;
+	this->_INVE=9;
 	initColor();
 	boxDraw(15, 0, maxWidth - 17, maxHeight, '*');
 	initPosGamers();
@@ -51,15 +62,21 @@ void* GUI::updateScores(void* obj) {
 	reinterpret_cast<GUI *>(obj)->updateHabilities();
 	return 0;
 }
+void* GUI::Controlall(void* obj){
+	reinterpret_cast<GUI *>(obj)->funtionMatrix();
+	return 0;
+
+}
 
 void GUI::start() {
 	pthread_create(&this->_clock, NULL, GUI::crono, this);
 	pthread_create(&this->_movement, NULL, GUI::movement, this);
 	pthread_create(&this->_update, NULL, GUI::updateScores, this);
-
+	pthread_create(&this->_controlMatrix,NULL,GUI::Controlall,this);
 	pthread_join(this->_clock, NULL);
 	pthread_join(this->_movement, NULL);
 	pthread_join(this->_update, NULL);
+	pthread_join(this->_controlMatrix, NULL);
 }
 
 void GUI::gameOver() {
@@ -298,6 +315,17 @@ void GUI::moveAndActiveKeyPad() {
 		refresh();
 	}
 	gameOver();
+}
+void GUI::funtionMatrix(){
+
+	while(!collision){
+		int _positionX=this->player_1->getPosX();
+		int _positionY=this->player_1->getPosY();
+		int _
+		mainmatrix->showMatrix();
+	usleep(500000);
+	}
+
 }
 
 void GUI::boxDraw(int beginX, int beginY, int maxX, int maxY, char pChar) {
