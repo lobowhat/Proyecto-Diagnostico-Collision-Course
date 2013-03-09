@@ -20,6 +20,7 @@ private:
 	Player* player_2;
 	Matrix* mainMatrix;
 	ListQueue<int>* queuePos;
+	GUI* gui;
 
 public:
 	Thread();
