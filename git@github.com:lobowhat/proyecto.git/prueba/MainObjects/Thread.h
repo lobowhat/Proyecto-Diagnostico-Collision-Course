@@ -13,6 +13,11 @@
 class Thread {
 private:
 	pthread_t execute;
+	Player* player_1;
+	Player* player_2;
+	Matrix* mainMatrix;
+	ListQueue<int>* queuePos;
+
 public:
 	Thread();
 	virtual ~Thread();
