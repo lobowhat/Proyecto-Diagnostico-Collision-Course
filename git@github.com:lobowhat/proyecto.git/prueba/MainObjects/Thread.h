@@ -24,7 +24,6 @@ private:
 
 public:
 	Thread();
-
 	virtual ~Thread();
 	static void* functionThread(void* var);
 	void fThread();
