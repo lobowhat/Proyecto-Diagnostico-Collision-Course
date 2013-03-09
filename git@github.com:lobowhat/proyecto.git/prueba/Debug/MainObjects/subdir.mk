@@ -8,6 +8,7 @@ CPP_SRCS += \
 ../MainObjects/Parser.cpp \
 ../MainObjects/Player.cpp \
 ../MainObjects/Random.cpp \
+../MainObjects/Thread.cpp \
 ../MainObjects/TrackPos.cpp \
 ../MainObjects/main.cpp 
 
@@ -16,6 +17,7 @@ OBJS += \
 ./MainObjects/Parser.o \
 ./MainObjects/Player.o \
 ./MainObjects/Random.o \
+./MainObjects/Thread.o \
 ./MainObjects/TrackPos.o \
 ./MainObjects/main.o 
 
@@ -24,6 +26,7 @@ CPP_DEPS += \
 ./MainObjects/Parser.d \
 ./MainObjects/Player.d \
 ./MainObjects/Random.d \
+./MainObjects/Thread.d \
 ./MainObjects/TrackPos.d \
 ./MainObjects/main.d 
 
