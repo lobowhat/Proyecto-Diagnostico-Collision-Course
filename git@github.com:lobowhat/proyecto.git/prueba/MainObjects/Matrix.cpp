@@ -163,7 +163,7 @@ int Matrix::position(int pobject)const{//application mathematic about calculatio
 			}
 		}
 	}
-	cout<<number<<endl;
+	//cout<<number<<endl;
 	return number;
 }
 bool Matrix::positionidentificX(int position,int ppositionI)const{
@@ -199,7 +199,7 @@ int Matrix::positiongraphicX(int pposition)const{//recursion about matrix
 
 
 	}
-	    cout<<(i+2)*10<<endl;
+	   //  cout<<(i+2)*10<<endl;
 	    return (i+2)*10;
 
 }
@@ -239,7 +239,7 @@ int Matrix::positiongraphicY(int pposition)const{//recursion about matrix
 	    		i+=this->_mathecua;
 	    	}
 	    }
-	    cout<<(_data-_crash)+i<<endl;
+	    //cout<<(_data-_crash)+i<<endl;
 	    return (_data-_crash)+i;
 }
 int Matrix::Graphiccontrolgame(int xposition,int yposition)const{
@@ -278,7 +278,7 @@ int Matrix::Graphiccontrolgame(int xposition,int yposition)const{
 			 }
 	   }
 	}
-	cout<<_position<<endl;
+	//cout<<_position<<endl;
 	return _position;
 }
 bool Matrix::Matrixcrash(int object1,int object2)const{
@@ -293,9 +293,11 @@ bool Matrix::Matrixcrash(int object1,int object2)const{
 
 
 void Matrix::showMatrix(){
-	for (int i = 0; i<111; i++) {
+	for (int i = 0; i<this->_rangex*this->_rangey; i++) {
 
-		        cout << " matrix[" << i << "][" << i <<"] = " << this->_matrix[i]<<endl;
+		    //    cout << " matrix[" << i << "][" << i <<"] = " << this->_matrix[i]<<endl;
+		this->_matrix[i]=i;
+
 	}
 }
 
