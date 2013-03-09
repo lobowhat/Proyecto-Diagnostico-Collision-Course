@@ -15,6 +15,7 @@ using namespace std;
 int main(int argc, char **argv) {
 	GUI* main = new GUI();
 	main->randomBumpPos();
+	main->randomZonesPos();
 	main->start();
 	return 0;
 }

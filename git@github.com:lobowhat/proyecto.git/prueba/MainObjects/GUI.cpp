@@ -625,7 +625,8 @@ void GUI::randomBumpPos() {
 	srand(time(NULL));
 	int randNumb;
 	for (int i = 0; i < 20; ++i) {
-		randNumb = rand()
+		randNumb =
+				rand()
 						% (this->mainmatrix->getRangex()
 								* this->mainmatrix->getRangey());
 		mainmatrix->changereference(randNumb, _BA);
@@ -633,5 +634,20 @@ void GUI::randomBumpPos() {
 		int posX = mainmatrix->positiongraphicX(bump);
 		int posY = mainmatrix->positiongraphicY(bump);
 		drawBumps(posX, posY);
+	}
+}
+
+void GUI::randomZonesPos() {
+	srand(time(NULL));
+	int randNumb;
+	randNumb = 10 + (rand() % (30));
+	int tmp = ((this->mainmatrix->getRangex() * this->mainmatrix->getRangey())
+			* randNumb) / 100;
+	for (int i = 0; i < tmp; ++i) {
+		mainmatrix->changereference(randNumb, _TERR);
+		int bump = mainmatrix->position(_TERR);
+		int posX = mainmatrix->positiongraphicX(bump);
+		int posY = mainmatrix->positiongraphicY(bump);
+		drawHighZones(posX, posY);
 	}
 }
