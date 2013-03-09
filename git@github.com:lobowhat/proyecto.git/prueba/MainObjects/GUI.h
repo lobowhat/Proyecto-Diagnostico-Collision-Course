@@ -48,6 +48,8 @@ public:
 	void drawBumps(int x, int y); // Dibuja los baches
 	void drawSurprises(int x, int y, int color); // Dibuja las sorpresas
 	void drawHighZones(int x, int y); // Dibuja las zonas altas
+	Player* getPlayer_1();
+	Player* getPlayer_2();
 };
 
 #endif /* GUI_H_ */

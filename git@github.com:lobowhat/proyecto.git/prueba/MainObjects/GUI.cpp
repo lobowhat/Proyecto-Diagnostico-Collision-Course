@@ -411,3 +411,11 @@ void GUI::drawSurprises(int x, int y, int color) {
 	addch(_surprise_2);
 	attroff(COLOR_PAIR(color));
 }
+
+Player* GUI::getPlayer_1() {
+	return this->player_1;
+}
+
+Player* GUI::getPlayer_2() {
+	return this->player_2;
+}
