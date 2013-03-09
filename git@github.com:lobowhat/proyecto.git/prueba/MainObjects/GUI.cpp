@@ -6,6 +6,8 @@
  */
 
 #include "GUI.h"
+#include <iostream>
+using namespace std;
 
 GUI::GUI() {
 	initscr();
@@ -36,6 +38,8 @@ GUI::GUI() {
 	this->_BA = 7;
 	this->_TERR = 8;
 	this->_INVE = 9;
+	this->_list = new ListQueue<int>();
+	this->_list2 = new ListQueue<int>();
 	initColor();
 	boxDraw(15, 0, maxWidth - 17, maxHeight, '*');
 	initPosGamers();
@@ -408,12 +412,41 @@ void GUI::moveAndActiveKeyPad() {
 	gameOver();
 }
 void GUI::funtionMatrix() {
-
+	int _var = 3;
+	bool _flag = false;
 	while (!collision()) {
-//		int _positionX=this->player_1->getPosX();
-//		int _positionY=this->player_1->getPosY();
-//		mainmatrix->showMatrix();
-		usleep(500000);
+		int _positionX = this->player_1->getPosX();
+		int _positionY = this->player_1->getPosY();
+		int _positionX2 = this->player_2->getPosX();
+		int _positionY2 = this->player_2->getPosY();
+		int j_1 = mainmatrix->Graphiccontrolgame(_positionX, _positionY);
+		int j_2 = mainmatrix->Graphiccontrolgame(_positionX2, _positionY2);
+		this->_list->enqueue(j_1);
+		this->_list2->enqueue(j_2);
+		mainmatrix->changereference(j_1, this->_player1);
+		mainmatrix->changereference(j_2, this->_player2);
+		move(70, 10);
+		addch('6');
+		attroff(COLOR_PAIR(5));
+		refresh();
+		while (!_flag) {
+			if (this->sec == _var) {
+				_flag = true;
+				_var += this->sec;
+			} else {
+				mainmatrix->changereference(_list->dequeue(), 0);
+				mainmatrix->changereference(_list2->dequeue(), 0);
+				//move(this->mainmatrix->positiongraphicX(_list->dequeue()),this->mainmatrix->positiongraphicY(_list->dequeue()));
+				move(50, 10);
+				addch('O');
+				attroff(COLOR_PAIR(5));
+				refresh();
+			}
+		}
+
+		mainmatrix->showMatrix();
+		cout << "puta sali" << endl;
+		usleep(50000);
 	}
 
 }
