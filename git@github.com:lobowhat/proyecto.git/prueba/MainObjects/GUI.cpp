@@ -27,6 +27,8 @@ GUI::GUI() {
 	_surprises = '@';
 	_surprise_2 = '$';
 	_highZones = 'M';
+	boxDraw(15, 0,maxWidth-17, maxHeight,'*');
+	drawHighZones(40,22);
 	initColor();
 	initPosGamers();
 	gameManual();
@@ -240,7 +242,7 @@ void GUI::boxDraw(int beginX, int beginY, int maxX, int maxY, char pChar) {
 		move(maxY, i);
 		addch(pChar);
 	}
-	for (int i = beginY; i < maxY + 1; ++i) {
+	for (int i = beginY; i < maxY; ++i) {
 		move(i, maxX);
 		addch(pChar);
 	}
@@ -290,7 +292,7 @@ void GUI::initColor() {
 
 void GUI::gameManual() {
 	attron(COLOR_PAIR(1));
-	boxDraw(0, 0, 14, 15, '*');
+	boxDraw(0, 0, 15, 15, '*');
 	move(1, 2);
 	printw("Player 1");
 	attroff(COLOR_PAIR(1));
