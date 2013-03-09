@@ -21,7 +21,7 @@ private:
 	Player* player_1;
 	Player* player_2;
 	Matrix* mainmatrix;
-	pthread_t _clock, _movement, _trackPlayer1, _trackPayer2, _update,_controlMatrix; //Hilos de ejecución
+	pthread_t _clock, _movement, _trackPlayer1, _trackPayer2, _update,_controlMatrix, _surpriseThread; //Hilos de ejecución
 	int sec; // Segundos de ejecución
 	int maxHeight, maxWidth; // Tamaños maximos de la ventana
 	int currentX_P1, currentY_P1, currentX_P2, currentY_P2; // Variables enteras que representan posiciones.
@@ -45,6 +45,8 @@ public:
 	static void* crono(void* obj); // Funcion ejecutora del hilo del cronometro
 	static void* updateScores(void*);
 	static void* Controlall(void*);
+	static void* putSurprise(void*);
+	void surpriseGraphic();
 	void updateHabilities();
 	void moveAndActiveKeyPad(); // Funcion del movimiento
 	void functionCronometer();//Funcion del cronometro
@@ -59,8 +61,6 @@ public:
 	void drawBumps(int x, int y); // Dibuja los baches
 	void drawSurprises(int x, int y, int color); // Dibuja las sorpresas
 	void drawHighZones(int x, int y); // Dibuja las zonas altas
-	Player* getPlayer_1();
-	Player* getPlayer_2();
 };
 
 #endif /* GUI_H_ */

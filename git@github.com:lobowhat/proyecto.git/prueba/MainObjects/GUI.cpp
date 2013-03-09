@@ -27,15 +27,15 @@ GUI::GUI() {
 	_highZones = 'M';
 	this->mainmatrix = new Matrix();
 	this->mainmatrix->creationmatrix();
-	this->_player1=1;
-	this->_player2=2;
-	this->_EM=3;
-	this->_EA=4;
-	this->_TA=5;
-	this->_VA=6;
-	this->_BA=7;
-	this->_TERR=8;
-	this->_INVE=9;
+	this->_player1 = 1;
+	this->_player2 = 2;
+	this->_EM = 3;
+	this->_EA = 4;
+	this->_TA = 5;
+	this->_VA = 6;
+	this->_BA = 7;
+	this->_TERR = 8;
+	this->_INVE = 9;
 	initColor();
 	boxDraw(15, 0, maxWidth - 17, maxHeight, '*');
 	initPosGamers();
@@ -46,6 +46,11 @@ GUI::~GUI() {
 	getch();
 	refresh();
 	endwin();
+}
+
+void* GUI::putSurprise(void* obj) {
+	reinterpret_cast<GUI *>(obj)->surpriseGraphic();
+	return 0;
 }
 
 void* GUI::movement(void* obj) {
@@ -62,7 +67,7 @@ void* GUI::updateScores(void* obj) {
 	reinterpret_cast<GUI *>(obj)->updateHabilities();
 	return 0;
 }
-void* GUI::Controlall(void* obj){
+void* GUI::Controlall(void* obj) {
 	reinterpret_cast<GUI *>(obj)->funtionMatrix();
 	return 0;
 
@@ -72,11 +77,13 @@ void GUI::start() {
 	pthread_create(&this->_clock, NULL, GUI::crono, this);
 	pthread_create(&this->_movement, NULL, GUI::movement, this);
 	pthread_create(&this->_update, NULL, GUI::updateScores, this);
-	pthread_create(&this->_controlMatrix,NULL,GUI::Controlall,this);
+	pthread_create(&this->_controlMatrix, NULL, GUI::Controlall, this);
+	pthread_create(&this->_surpriseThread, NULL, GUI::putSurprise, this);
 	pthread_join(this->_clock, NULL);
 	pthread_join(this->_movement, NULL);
 	pthread_join(this->_update, NULL);
 	pthread_join(this->_controlMatrix, NULL);
+	pthread_join(this->_surpriseThread, NULL);
 }
 
 void GUI::gameOver() {
@@ -133,6 +140,81 @@ void GUI::functionCronometer() {
 	}
 }
 
+void GUI::surpriseGraphic() {
+	int randNumber = 0;
+	int timer = 0;
+	int tmp = 0;
+	int tmp_1[4] = { _EM, _EA, _TA, _VA };
+	int tmp_2[5] = { _EM, _EA, _TA, _VA, _INVE };
+	srand(time(NULL));
+	while (!collision()) {
+		if (timer >= 12) {
+			randNumber = rand() % 4;
+			tmp = tmp_1[randNumber];
+
+			randNumber = rand()
+					% (this->mainmatrix->getRangex()
+							* this->mainmatrix->getRangey());
+
+		} else {
+			randNumber = rand() % 5;
+			tmp = tmp_2[randNumber];
+
+			randNumber = rand()
+					% (this->mainmatrix->getRangex()
+							* this->mainmatrix->getRangey());
+
+		}
+		mainmatrix->changereference(randNumber, tmp);
+		int tmpPos = mainmatrix->position(tmp);
+		int pos_X = mainmatrix->positiongraphicX(tmpPos);
+		int pos_Y = mainmatrix->positiongraphicY(tmpPos);
+		drawSurprises(pos_X, pos_Y, 7);
+		if (mainmatrix->Graphiccontrolgame(pos_X, pos_Y)
+				== mainmatrix->Graphiccontrolgame(this->player_1->getPosX(),
+						this->player_1->getPosY())) {
+			if (this->_EA == tmp) {
+				int ability = this->player_1->getHighTrack() + 10;
+				this->player_1->setHighTrack(ability);
+			} else if (this->_EM == tmp) {
+				int ability = this->player_1->getMediumTrack() + 10;
+				this->player_1->setMediumTrack(ability);
+			} else if (this->_TA == tmp) {
+				int ability = this->player_1->getHighTraction() + 10;
+				this->player_1->setHighTraction(ability);
+			} else if (this->_VA == tmp) {
+				int ability = this->player_1->getHighSpeed() + 10;
+				this->player_1->setHighSpeed(ability);
+			} else if (this->_INVE == tmp) {
+				int ability = this->player_1->getInvincible() + 10;
+				this->player_1->setInvincible(ability);
+			}
+		}
+		if (mainmatrix->Graphiccontrolgame(pos_X, pos_Y)
+				== mainmatrix->Graphiccontrolgame(this->player_2->getPosX(),
+						this->player_2->getPosY())) {
+			if (this->_EA == tmp) {
+				int ability = this->player_1->getHighTrack() + 10;
+				this->player_2->setHighTrack(ability);
+			} else if (this->_EM == tmp) {
+				int ability = this->player_1->getMediumTrack() + 10;
+				this->player_2->setMediumTrack(ability);
+			} else if (this->_TA == tmp) {
+				int ability = this->player_1->getHighTraction() + 10;
+				this->player_2->setHighTraction(ability);
+			} else if (this->_VA == tmp) {
+				int ability = this->player_1->getHighSpeed() + 10;
+				this->player_2->setHighSpeed(ability);
+			} else if (this->_INVE == tmp) {
+				int ability = this->player_1->getInvincible() + 10;
+				this->player_2->setInvincible(ability);
+			}
+		}
+
+		usleep(10000000);
+	}
+}
+
 void GUI::moveAndActiveKeyPad() {
 	while (!collision()) {
 		usleep(220000);
@@ -171,25 +253,29 @@ void GUI::moveAndActiveKeyPad() {
 		case 113:
 			if (this->player_1->HighTraction()) {
 				int tmp = this->player_1->getHighTraction();
-				this->player_1->setHighTrack(tmp--);
+				tmp--;
+				this->player_1->setHighTrack(tmp);
 			}
 			break;
 		case 119:
 			if (this->player_1->MediumTrack()) {
 				int tmp = this->player_1->getMediumTrack();
-				this->player_1->setMediumTrack(tmp--);
+				tmp--;
+				this->player_1->setMediumTrack(tmp);
 			}
 			break;
 		case 101:
 			if (this->player_1->HighTrack()) {
 				int tmp = this->player_1->getHighTrack();
-				this->player_1->setHighTrack(tmp--);
+				tmp--;
+				this->player_1->setHighTrack(tmp);
 			}
 			break;
 		case 114:
 			if (this->player_1->Invincible()) {
 				int tmp = this->player_1->getInvincible();
-				this->player_1->setInvincible(tmp--);
+				tmp--;
+				this->player_1->setInvincible(tmp);
 			}
 			break;
 		case 116:
@@ -232,31 +318,36 @@ void GUI::moveAndActiveKeyPad() {
 		case 105:
 			if (this->player_2->HighTraction()) {
 				int tmp = this->player_2->getHighTraction();
-				this->player_2->setHighTrack(tmp--);
+				tmp--;
+				this->player_2->setHighTrack(tmp);
 			}
 			break;
 		case 106:
 			if (this->player_2->MediumTrack()) {
 				int tmp = this->player_2->getMediumTrack();
-				this->player_2->setMediumTrack(tmp--);
+				tmp--;
+				this->player_2->setMediumTrack(tmp);
 			}
 			break;
 		case 107:
 			if (this->player_2->HighTrack()) {
 				int tmp = this->player_2->getHighTrack();
-				this->player_2->setHighTrack(tmp--);
+				tmp--;
+				this->player_2->setHighTrack(tmp);
 			}
 			break;
 		case 111:
 			if (this->player_2->Invincible()) {
 				int tmp = this->player_2->getInvincible();
-				this->player_2->setInvincible(tmp--);
+				tmp--;
+				this->player_2->setInvincible(tmp);
 			}
 			break;
 		case 108:
 			if (this->player_2->HighSpeed()) {
 				int tmp = this->player_2->getHighSpeed();
-				this->player_2->setHighSpeed(tmp--);
+				tmp--;
+				this->player_2->setHighSpeed(tmp);
 			}
 			break;
 		}
@@ -316,14 +407,13 @@ void GUI::moveAndActiveKeyPad() {
 	}
 	gameOver();
 }
-void GUI::funtionMatrix(){
+void GUI::funtionMatrix() {
 
-	while(!collision){
-		int _positionX=this->player_1->getPosX();
-		int _positionY=this->player_1->getPosY();
-		int _
-		mainmatrix->showMatrix();
-	usleep(500000);
+	while (!collision()) {
+//		int _positionX=this->player_1->getPosX();
+//		int _positionY=this->player_1->getPosY();
+//		mainmatrix->showMatrix();
+		usleep(500000);
 	}
 
 }
@@ -496,12 +586,4 @@ void GUI::drawSurprises(int x, int y, int color) {
 	move(y, x + 1);
 	addch(_surprise_2);
 	attroff(COLOR_PAIR(color));
-}
-
-Player* GUI::getPlayer_1() {
-	return this->player_1;
-}
-
-Player* GUI::getPlayer_2() {
-	return this->player_2;
 }

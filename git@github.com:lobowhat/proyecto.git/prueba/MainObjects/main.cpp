@@ -6,9 +6,8 @@
  */
 
 #include "GUI.h"
-#include "DoubleCircularList.h"
+#include "ListQueue.h"
 #include <iostream>
-//#include "Thread.h"
 
 using namespace std;
 
