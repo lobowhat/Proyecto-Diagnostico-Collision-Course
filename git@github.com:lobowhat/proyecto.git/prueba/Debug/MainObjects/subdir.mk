@@ -5,6 +5,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../MainObjects/GUI.cpp \
+../MainObjects/ListQueue.cpp \
 ../MainObjects/Matrix.cpp \
 ../MainObjects/Parser.cpp \
 ../MainObjects/Player.cpp \
@@ -15,6 +16,7 @@ CPP_SRCS += \
 
 OBJS += \
 ./MainObjects/GUI.o \
+./MainObjects/ListQueue.o \
 ./MainObjects/Matrix.o \
 ./MainObjects/Parser.o \
 ./MainObjects/Player.o \
@@ -25,6 +27,7 @@ OBJS += \
 
 CPP_DEPS += \
 ./MainObjects/GUI.d \
+./MainObjects/ListQueue.d \
 ./MainObjects/Matrix.d \
 ./MainObjects/Parser.d \
 ./MainObjects/Player.d \

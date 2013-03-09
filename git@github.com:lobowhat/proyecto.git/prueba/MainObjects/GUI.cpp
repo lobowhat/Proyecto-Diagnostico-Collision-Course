@@ -17,8 +17,6 @@ GUI::GUI() {
 	this->sec = 0;
 	this->player_1 = new Player();
 	this->player_2 = new Player();
-	queueTrack_1 = new ListQueue<TrackPos*>();
-	queueTrack_2 = new ListQueue<TrackPos*>();
 	wallChar = (char) 219;
 	direction_P1 = 'u';
 	direction_P2 = 'u';
@@ -101,7 +99,6 @@ void GUI::updateHabilities() {
 		move(14, 136);
 		printw("%d", this->player_2->getHighSpeed());
 		refresh();
-
 		usleep(500000);
 	}
 }
@@ -154,6 +151,37 @@ void GUI::moveAndActiveKeyPad() {
 				charPlayer_1 = '<';
 			}
 			break;
+		case 113:
+			if (this->player_1->HighTraction()) {
+				int tmp = this->player_1->getHighTraction();
+				this->player_1->setHighTrack(tmp--);
+			}
+			break;
+		case 119:
+			if (this->player_1->MediumTrack()) {
+				int tmp = this->player_1->getMediumTrack();
+				this->player_1->setMediumTrack(tmp--);
+			}
+			break;
+		case 101:
+			if (this->player_1->HighTrack()) {
+				int tmp = this->player_1->getHighTrack();
+				this->player_1->setHighTrack(tmp--);
+			}
+			break;
+		case 114:
+			if (this->player_1->Invincible()) {
+				int tmp = this->player_1->getInvincible();
+				this->player_1->setInvincible(tmp--);
+			}
+			break;
+		case 116:
+			if (this->player_1->HighSpeed()) {
+				int tmp = this->player_1->getHighSpeed();
+				tmp--;
+				this->player_1->setHighSpeed(tmp);
+			}
+			break;
 		case KEY_RIGHT:
 			if (direction_P2 == 'l') {
 				direction_P2 = 'u';
@@ -184,10 +212,39 @@ void GUI::moveAndActiveKeyPad() {
 				charPlayer_2 = '<';
 			}
 			break;
+		case 105:
+			if (this->player_2->HighTraction()) {
+				int tmp = this->player_2->getHighTraction();
+				this->player_2->setHighTrack(tmp--);
+			}
+			break;
+		case 106:
+			if (this->player_2->MediumTrack()) {
+				int tmp = this->player_2->getMediumTrack();
+				this->player_2->setMediumTrack(tmp--);
+			}
+			break;
+		case 107:
+			if (this->player_2->HighTrack()) {
+				int tmp = this->player_2->getHighTrack();
+				this->player_2->setHighTrack(tmp--);
+			}
+			break;
+		case 111:
+			if (this->player_2->Invincible()) {
+				int tmp = this->player_2->getInvincible();
+				this->player_2->setInvincible(tmp--);
+			}
+			break;
+		case 108:
+			if (this->player_2->HighSpeed()) {
+				int tmp = this->player_2->getHighSpeed();
+				this->player_2->setHighSpeed(tmp--);
+			}
+			break;
 		}
 		attron(COLOR_PAIR(1));
 		move(currentY_P1, currentX_P1);
-		this->queueTrack_1->enqueue(new TrackPos(currentX_P1, currentY_P1));
 		addch('x');
 		attroff(COLOR_PAIR(1));
 		if (direction_P1 == 'l') {
@@ -216,7 +273,6 @@ void GUI::moveAndActiveKeyPad() {
 		attron(COLOR_PAIR(4));
 		move(currentY_P2, currentX_P2);
 		addch('x');
-		this->queueTrack_2->enqueue(new TrackPos(currentX_P2, currentY_P2));
 		attroff(COLOR_PAIR(4));
 		if (direction_P2 == 'l') {
 			currentX_P2--;
@@ -281,6 +337,8 @@ void GUI::initPosGamers() {
 	attron(COLOR_PAIR(6));
 	currentY_P1 = 33;
 	currentX_P1 = 35;
+	this->player_1->setPosX(currentX_P1);
+	this->player_1->setPosY(currentY_P1);
 	move(currentY_P1, currentX_P1);
 	addch(charPlayer_1);
 	attroff(COLOR_PAIR(6));

@@ -6,6 +6,7 @@
  */
 
 #include "GUI.h"
+#include "DoubleCircularList.h"
 #include <iostream>
 
 using namespace std;
@@ -16,4 +17,3 @@ int main(int argc, char **argv) {
 	main->start();
 	return 0;
 }
-

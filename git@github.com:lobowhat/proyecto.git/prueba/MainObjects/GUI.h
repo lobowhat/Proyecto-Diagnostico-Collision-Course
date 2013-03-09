@@ -20,8 +20,6 @@ private:
 	Player* player_1;
 	Player* player_2;
 	pthread_t _clock, _movement, _trackPlayer1, _trackPayer2, _update; //Hilos de ejecución
-	ListQueue<TrackPos*>* queueTrack_1; // Cola que contiene las posiciones de la estela del jugador 1
-	ListQueue<TrackPos*>* queueTrack_2; // Cola que contiene las posiciones de la estela del jugador 2
 	int sec; // Segundos de ejecución
 	int maxHeight, maxWidth; // Tamaños maximos de la ventana
 	int currentX_P1, currentY_P1, currentX_P2, currentY_P2; // Variables enteras que representan posiciones.

@@ -10,7 +10,7 @@
 Thread::Thread() {
 	this->mainMatrix = new Matrix();
 	this->mainMatrix->creationmatrix();
-	this->queuePos = new ListQueue<int>;
+//	this->queuePos = new ListQueue<int>();
 	this->gui = new GUI();
 	this->player_1 = this->gui->getPlayer_1();
 	this->player_2 = this->gui->getPlayer_2();
