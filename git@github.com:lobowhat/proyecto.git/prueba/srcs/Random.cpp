@@ -12,14 +12,14 @@ using namespace std;
 
 int * getRandomPos(int minWidth, int maxWidth, int minHeight, int maxHeight);
 
-int main(int argc, char **argv) {
-	int * tmp;
-	tmp = getRandomPos(15, 24, 8, 12);
-	cout << tmp[0] << endl;
-	cout << tmp[1] << endl;
-
-	return 0;
-}
+//int main(int argc, char **argv) {
+//	int * tmp;
+//	tmp = getRandomPos(25, 34, 0, 4);
+//	cout << tmp[0] << endl;
+//	cout << tmp[1] << endl;
+//
+//	return 0;
+//}
 
 int *getRandomPos(int minWidth, int maxWidth, int minHeight, int maxHeight) {
 	srand(time(NULL));

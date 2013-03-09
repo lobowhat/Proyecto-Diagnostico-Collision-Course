@@ -14,7 +14,12 @@ using namespace std;
 
 int main(int argc, char **argv) {
 	Player* player = new Player();
-	cout << player->getScore();
+	cout << "Score: " << player->getScore() << endl;
+	cout << "Speed: " << player->getHighSpeed() << endl;
+	cout << "High Track: " << player->getHighTrack() << endl;
+	cout << "Invincible: " << player->getInvincible() << endl;
+	cout << "Medium Track: " << player->getMediumTrack() << endl;
+	cout << "High Traction: " << player->getHighTraction() << endl;
 	return 0;
 }
 
