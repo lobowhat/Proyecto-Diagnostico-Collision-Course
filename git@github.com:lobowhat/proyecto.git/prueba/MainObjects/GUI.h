@@ -21,6 +21,8 @@ private:
 	Player* player_1;
 	Player* player_2;
 	Matrix* mainmatrix;
+	ListQueue<int>*_list;
+	ListQueue<int>*_list2;
 	pthread_t _clock, _movement, _trackPlayer1, _trackPayer2, _update,_controlMatrix; //Hilos de ejecución
 	int sec; // Segundos de ejecución
 	int maxHeight, maxWidth; // Tamaños maximos de la ventana

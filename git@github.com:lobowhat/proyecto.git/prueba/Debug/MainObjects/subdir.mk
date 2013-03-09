@@ -5,33 +5,27 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../MainObjects/GUI.cpp \
-../MainObjects/ListQueue.cpp \
 ../MainObjects/Matrix.cpp \
 ../MainObjects/Parser.cpp \
 ../MainObjects/Player.cpp \
-../MainObjects/Random.cpp \
 ../MainObjects/Thread.cpp \
 ../MainObjects/TrackPos.cpp \
 ../MainObjects/main.cpp 
 
 OBJS += \
 ./MainObjects/GUI.o \
-./MainObjects/ListQueue.o \
 ./MainObjects/Matrix.o \
 ./MainObjects/Parser.o \
 ./MainObjects/Player.o \
-./MainObjects/Random.o \
 ./MainObjects/Thread.o \
 ./MainObjects/TrackPos.o \
 ./MainObjects/main.o 
 
 CPP_DEPS += \
 ./MainObjects/GUI.d \
-./MainObjects/ListQueue.d \
 ./MainObjects/Matrix.d \
 ./MainObjects/Parser.d \
 ./MainObjects/Player.d \
-./MainObjects/Random.d \
 ./MainObjects/Thread.d \
 ./MainObjects/TrackPos.d \
 ./MainObjects/main.d 
