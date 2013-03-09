@@ -24,7 +24,6 @@ private:
 	pthread_t _clock, _movement, _trackPlayer1, _trackPayer2, _update,_controlMatrix, _surpriseThread; //Hilos de ejecución
 	ListQueue<int>*_list;
 	ListQueue<int>*_list2;
-	pthread_t _clock, _movement, _trackPlayer1, _trackPayer2, _update,_controlMatrix; //Hilos de ejecución
 	int sec; // Segundos de ejecución
 	int maxHeight, maxWidth; // Tamaños maximos de la ventana
 	int currentX_P1, currentY_P1, currentX_P2, currentY_P2; // Variables enteras que representan posiciones.
@@ -64,6 +63,8 @@ public:
 	void drawBumps(int x, int y); // Dibuja los baches
 	void drawSurprises(int x, int y, int color); // Dibuja las sorpresas
 	void drawHighZones(int x, int y); // Dibuja las zonas altas
+	void randomBumpPos();
+	void randomZonesPos();
 };
 
 #endif /* GUI_H_ */

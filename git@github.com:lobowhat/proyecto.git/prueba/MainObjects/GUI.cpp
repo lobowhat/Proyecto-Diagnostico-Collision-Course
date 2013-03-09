@@ -174,46 +174,46 @@ void GUI::surpriseGraphic() {
 		int pos_X = mainmatrix->positiongraphicX(tmpPos);
 		int pos_Y = mainmatrix->positiongraphicY(tmpPos);
 		drawSurprises(pos_X, pos_Y, 7);
-		if (mainmatrix->Graphiccontrolgame(pos_X, pos_Y)
-				== mainmatrix->Graphiccontrolgame(this->player_1->getPosX(),
-						this->player_1->getPosY())) {
-			if (this->_EA == tmp) {
-				int ability = this->player_1->getHighTrack() + 10;
-				this->player_1->setHighTrack(ability);
-			} else if (this->_EM == tmp) {
-				int ability = this->player_1->getMediumTrack() + 10;
-				this->player_1->setMediumTrack(ability);
-			} else if (this->_TA == tmp) {
-				int ability = this->player_1->getHighTraction() + 10;
-				this->player_1->setHighTraction(ability);
-			} else if (this->_VA == tmp) {
-				int ability = this->player_1->getHighSpeed() + 10;
-				this->player_1->setHighSpeed(ability);
-			} else if (this->_INVE == tmp) {
-				int ability = this->player_1->getInvincible() + 10;
-				this->player_1->setInvincible(ability);
-			}
-		}
-		if (mainmatrix->Graphiccontrolgame(pos_X, pos_Y)
-				== mainmatrix->Graphiccontrolgame(this->player_2->getPosX(),
-						this->player_2->getPosY())) {
-			if (this->_EA == tmp) {
-				int ability = this->player_1->getHighTrack() + 10;
-				this->player_2->setHighTrack(ability);
-			} else if (this->_EM == tmp) {
-				int ability = this->player_1->getMediumTrack() + 10;
-				this->player_2->setMediumTrack(ability);
-			} else if (this->_TA == tmp) {
-				int ability = this->player_1->getHighTraction() + 10;
-				this->player_2->setHighTraction(ability);
-			} else if (this->_VA == tmp) {
-				int ability = this->player_1->getHighSpeed() + 10;
-				this->player_2->setHighSpeed(ability);
-			} else if (this->_INVE == tmp) {
-				int ability = this->player_1->getInvincible() + 10;
-				this->player_2->setInvincible(ability);
-			}
-		}
+//		if (mainmatrix->Graphiccontrolgame(pos_X, pos_Y)
+//				== mainmatrix->Graphiccontrolgame(this->player_1->getPosX(),
+//						this->player_1->getPosY())) {
+//			if (this->_EA == tmp) {
+//				int ability = this->player_1->getHighTrack() + 10;
+//				this->player_1->setHighTrack(ability);
+//			} else if (this->_EM == tmp) {
+//				int ability = this->player_1->getMediumTrack() + 10;
+//				this->player_1->setMediumTrack(ability);
+//			} else if (this->_TA == tmp) {
+//				int ability = this->player_1->getHighTraction() + 10;
+//				this->player_1->setHighTraction(ability);
+//			} else if (this->_VA == tmp) {
+//				int ability = this->player_1->getHighSpeed() + 10;
+//				this->player_1->setHighSpeed(ability);
+//			} else if (this->_INVE == tmp) {
+//				int ability = this->player_1->getInvincible() + 10;
+//				this->player_1->setInvincible(ability);
+//			}
+//		}
+//		if (mainmatrix->Graphiccontrolgame(pos_X, pos_Y)
+//				== mainmatrix->Graphiccontrolgame(this->player_2->getPosX(),
+//						this->player_2->getPosY())) {
+//			if (this->_EA == tmp) {
+//				int ability = this->player_1->getHighTrack() + 10;
+//				this->player_2->setHighTrack(ability);
+//			} else if (this->_EM == tmp) {
+//				int ability = this->player_1->getMediumTrack() + 10;
+//				this->player_2->setMediumTrack(ability);
+//			} else if (this->_TA == tmp) {
+//				int ability = this->player_1->getHighTraction() + 10;
+//				this->player_2->setHighTraction(ability);
+//			} else if (this->_VA == tmp) {
+//				int ability = this->player_1->getHighSpeed() + 10;
+//				this->player_2->setHighSpeed(ability);
+//			} else if (this->_INVE == tmp) {
+//				int ability = this->player_1->getInvincible() + 10;
+//				this->player_2->setInvincible(ability);
+//			}
+//		}
 
 		usleep(10000000);
 	}
@@ -619,4 +619,19 @@ void GUI::drawSurprises(int x, int y, int color) {
 	move(y, x + 1);
 	addch(_surprise_2);
 	attroff(COLOR_PAIR(color));
+}
+
+void GUI::randomBumpPos() {
+	srand(time(NULL));
+	int randNumb;
+	for (int i = 0; i < 20; ++i) {
+		randNumb = rand()
+						% (this->mainmatrix->getRangex()
+								* this->mainmatrix->getRangey());
+		mainmatrix->changereference(randNumb, _BA);
+		int bump = mainmatrix->position(_BA);
+		int posX = mainmatrix->positiongraphicX(bump);
+		int posY = mainmatrix->positiongraphicY(bump);
+		drawBumps(posX, posY);
+	}
 }
