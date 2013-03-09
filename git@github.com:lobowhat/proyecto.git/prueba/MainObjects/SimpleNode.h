@@ -12,7 +12,7 @@
 template<typename E>
 class SimpleNode {
 private:
-	int _data;
+	E _data;
 	// Valor del nodo.
 	SimpleNode *_next;
 	// Puntero al nodo siguiente.

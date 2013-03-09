@@ -26,7 +26,7 @@ public:
 	virtual void enqueue(const E&) = 0;
 
 	// Elimina el primer elemento de la cola.
-	virtual int dequeue() = 0;
+	virtual E dequeue() = 0;
 
 	// Devuelve el tamaño de la cola.
 	virtual int length() const = 0;
