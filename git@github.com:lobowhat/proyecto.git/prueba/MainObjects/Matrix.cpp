@@ -300,38 +300,32 @@ void Matrix::showMatrix(){
 }
 
 
-int  main() {
-   Matrix* object=new Matrix();
-
-    object->creationmatrix();
-    object->changereference(23,1500);
-    object->changereference(26,1700);
-    object->changereference(29,1720);
-    object->changereference(46,17);
-    object->changereference(66,20);
-    object->changereference(78,80);
-    object->changereference(99,19);
-    object->changereference(2,256);
-    object->changereference(26,89);
-    //object->showMatrix();
-    object->positiongraphicX(97);
-    object->positiongraphicY(97);
-   /* object->Graphiccontrolgame(15,3);
-    object->Graphiccontrolgame(16,6);
-    object->Graphiccontrolgame(20,9);
-    object->Graphiccontrolgame(21,16);
-    object->Graphiccontrolgame(24,18);
-    object->Graphiccontrolgame(23,22);
-    object->Graphiccontrolgame(22,27);
-    object->Graphiccontrolgame(20,31);
-    object->Graphiccontrolgame(18,36);*/
-
-
-
-
-
-
-}
+//int  main() {
+//   Matrix* object=new Matrix();
+//
+//    object->creationmatrix();
+//    object->changereference(23,1500);
+//    object->changereference(26,1700);
+//    object->changereference(29,1720);
+//    object->changereference(46,17);
+//    object->changereference(66,20);
+//    object->changereference(78,80);
+//    object->changereference(99,19);
+//    object->changereference(2,256);
+//    object->changereference(26,89);
+//    //object->showMatrix();
+//    object->positiongraphicX(97);
+//    object->positiongraphicY(97);
+//   /* object->Graphiccontrolgame(15,3);
+//    object->Graphiccontrolgame(16,6);
+//    object->Graphiccontrolgame(20,9);
+//    object->Graphiccontrolgame(21,16);
+//    object->Graphiccontrolgame(24,18);
+//    object->Graphiccontrolgame(23,22);
+//    object->Graphiccontrolgame(22,27);
+//    object->Graphiccontrolgame(20,31);
+//    object->Graphiccontrolgame(18,36);*/
+//}
 
 
 

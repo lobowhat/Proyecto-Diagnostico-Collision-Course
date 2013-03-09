@@ -5,6 +5,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../MainObjects/GUI.cpp \
+../MainObjects/Matrix.cpp \
 ../MainObjects/Parser.cpp \
 ../MainObjects/Player.cpp \
 ../MainObjects/Random.cpp \
@@ -14,6 +15,7 @@ CPP_SRCS += \
 
 OBJS += \
 ./MainObjects/GUI.o \
+./MainObjects/Matrix.o \
 ./MainObjects/Parser.o \
 ./MainObjects/Player.o \
 ./MainObjects/Random.o \
@@ -23,6 +25,7 @@ OBJS += \
 
 CPP_DEPS += \
 ./MainObjects/GUI.d \
+./MainObjects/Matrix.d \
 ./MainObjects/Parser.d \
 ./MainObjects/Player.d \
 ./MainObjects/Random.d \

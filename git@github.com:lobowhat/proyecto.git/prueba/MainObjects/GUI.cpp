@@ -27,9 +27,8 @@ GUI::GUI() {
 	_surprises = '@';
 	_surprise_2 = '$';
 	_highZones = 'M';
-	boxDraw(15, 0,maxWidth-17, maxHeight,'*');
-	drawHighZones(40,22);
 	initColor();
+	boxDraw(15, 0, maxWidth - 17, maxHeight, '*');
 	initPosGamers();
 	gameManual();
 }
@@ -193,12 +192,20 @@ void GUI::moveAndActiveKeyPad() {
 		attroff(COLOR_PAIR(1));
 		if (direction_P1 == 'l') {
 			currentX_P1--;
+			this->player_1->setPosX(currentX_P1);
+			this->player_1->setPosY(currentY_P1);
 		} else if (direction_P1 == 'r') {
 			currentX_P1++;
+			this->player_1->setPosX(currentX_P1);
+			this->player_1->setPosY(currentY_P1);
 		} else if (direction_P1 == 'u') {
 			currentY_P1--;
+			this->player_1->setPosX(currentX_P1);
+			this->player_1->setPosY(currentY_P1);
 		} else if (direction_P1 == 'd') {
 			currentY_P1++;
+			this->player_1->setPosX(currentX_P1);
+			this->player_1->setPosY(currentY_P1);
 		}
 		attron(COLOR_PAIR(6));
 		move(currentY_P1, currentX_P1);
@@ -213,12 +220,20 @@ void GUI::moveAndActiveKeyPad() {
 		attroff(COLOR_PAIR(4));
 		if (direction_P2 == 'l') {
 			currentX_P2--;
+			this->player_2->setPosX(currentX_P2);
+			this->player_2->setPosY(currentY_P2);
 		} else if (direction_P2 == 'r') {
 			currentX_P2++;
+			this->player_2->setPosX(currentX_P2);
+			this->player_2->setPosY(currentY_P2);
 		} else if (direction_P2 == 'u') {
 			currentY_P2--;
+			this->player_2->setPosX(currentX_P2);
+			this->player_2->setPosY(currentY_P2);
 		} else if (direction_P2 == 'd') {
 			currentY_P2++;
+			this->player_2->setPosX(currentX_P2);
+			this->player_2->setPosY(currentY_P2);
 		}
 		attron(COLOR_PAIR(5));
 		move(currentY_P2, currentX_P2);
@@ -226,6 +241,7 @@ void GUI::moveAndActiveKeyPad() {
 		attroff(COLOR_PAIR(5));
 		refresh();
 	}
+	gameOver();
 }
 
 void GUI::boxDraw(int beginX, int beginY, int maxX, int maxY, char pChar) {
